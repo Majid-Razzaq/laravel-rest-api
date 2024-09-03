@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        \App\Models\User::factory(10)->create();
+        // use this command to create data in DB (php artisan db:seed)
         // User::factory(10)->create();
 
         User::factory()->create([
