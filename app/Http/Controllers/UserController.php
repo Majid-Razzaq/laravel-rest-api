@@ -65,4 +65,42 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function update(Request $request, $id){
+         
+        $user = User::find($id);
+        if($user == null){
+            return response()->json([
+                'message' => 'User not found',
+                'status' => false,
+            ], 200);
+        }
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+         ];
+
+         $validator = Validator::make($request->all(),$rules);
+         if($validator->fails()){
+            return response()->json([
+                'message' => 'Please fix the errors',
+                'status' => false,
+                'errors' => $validator->errors(),
+            ], 200);
+         }
+
+         $user->name = $request->name;
+         $user->email = $request->email;
+         $user->password = $request->password;
+         $user->save();
+
+         return response()->json([
+            'message' => 'User updated successfully',
+            'status' => true,
+            'data' => $user,
+         ], 200);
+
+    }
+
 }
+
