@@ -13,10 +13,10 @@
 
 ## Getting Started
 -  Clone the repository.
+-  Change the .env.example to .env and add your database info
 -  Run composer install to install dependencies.
 -  Set up your database configuration in the .env file.
 -  Run php artisan migrate to create the necessary database tables.
--  Customize the application as needed.
 
 ```javascript
 composer install
